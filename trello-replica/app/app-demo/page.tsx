@@ -19,7 +19,6 @@ export default function BoardsPage() {
   const [selectedBoard, setSelectedBoard] = useState<Board | null>(null);
   const router = useRouter();
 
-  // Fetch boards from the server
   const fetchBoards = async () => {
     try {
       const response = await axios.get('/api/boards');
@@ -29,7 +28,6 @@ export default function BoardsPage() {
     }
   };
 
-  // Fetch boards on initial load
   useEffect(() => {
     fetchBoards();
   }, []);
