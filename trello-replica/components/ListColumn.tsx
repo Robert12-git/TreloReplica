@@ -2,14 +2,25 @@ import React, { useState } from "react";
 import CardItem from "./CardItem";
 import CardModal from "./CardModal";
 
+type ListType = {
+  _id: string;
+  name: string;
+  cards: { _id: string; title: string; description?: string }[];
+};
+
+type ListColumnProps = {
+  list: ListType;
+  onAddCard: (listId: string) => void;
+  onEditCard: (listId: string, cardId: string) => void;
+  onDeleteCard: (listId: string, cardId: string) => void;
+};
+
 export default function ListColumn({
   list,
   onAddCard,
   onEditCard,
   onDeleteCard,
-  onUpdateList,
-  onDeleteList,
-}) {
+}: ListColumnProps) {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleSaveCard = (updatedCard) => {
