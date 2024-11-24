@@ -9,7 +9,7 @@ import posthog from "posthog-js";
 type Card = {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
 };
 
 type List = {
@@ -162,7 +162,7 @@ export default function BoardPage() {
     cardId: string,
     updatedCard: Card
   ) => {
-    if (!updatedCard.title) return;
+    if (!updatedCard.title || !board) return;
 
     try {
       await axios.put(
@@ -204,7 +204,7 @@ export default function BoardPage() {
 
 
   const handleDeleteCard = async (listId: string, cardId: string) => {
-    if (!confirm("Are you sure you want to delete this card?")) return;
+    if (!confirm("Are you sure you want to delete this card?") || !board) return;
 
     try {
       await axios.delete(

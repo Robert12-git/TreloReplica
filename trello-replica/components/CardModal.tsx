@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
+type CardType = {
+  _id: string;
+  title: string;
+  description?: string;
+};
+
 type CardModalProps = {
-  card: { _id: string; title: string; description: string };
+  card: CardType;
   onClose: () => void;
-  onSave: (updatedCard: { title: string; description: string }) => void;
+  onSave: (updatedCard: CardType) => void;
   onDelete: () => void;
 };
 
@@ -18,7 +24,7 @@ export default function CardModal({
   const [description, setDescription] = useState(card.description || "");
 
   const handleSave = () => {
-    onSave({ title, description });
+    onSave({_id: card._id, title: title, description: description });
     setIsEditing(false);
   };
 

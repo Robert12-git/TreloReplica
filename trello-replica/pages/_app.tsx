@@ -8,8 +8,8 @@ import { PostHogProvider } from "posthog-js/react";
 if (typeof window !== "undefined") {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || "", {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://app.posthog.com",
-    persistence: "localStorage", // Keep user sessions persistent
-    person_properties: "identified_only", // Tracks only identified users
+    persistence: "localStorage",
+    person_profiles: "identified_only",
   });
 }
 

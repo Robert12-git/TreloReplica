@@ -8,4 +8,4 @@ const ListSchema = new mongoose.Schema({
     cards: {type: [Card]}
 })
 
-export default mongoose.models.Card || mongoose.model('Card', ListSchema);
+export default mongoose.models.List || mongoose.model('List', ListSchema);

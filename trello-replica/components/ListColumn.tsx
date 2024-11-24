@@ -8,11 +8,19 @@ type ListType = {
   cards: { _id: string; title: string; description?: string }[];
 };
 
+type CardType = {
+  _id: string;
+  title: string;
+  description?: string;
+};
+
 type ListColumnProps = {
   list: ListType;
   onAddCard: (listId: string) => void;
-  onEditCard: (listId: string, cardId: string) => void;
+  onEditCard: (listId: string, cardId: string, updatedCard: CardType) => void;
   onDeleteCard: (listId: string, cardId: string) => void;
+  onUpdateList: (listId: string, newName: string) => void;
+  onDeleteList: (listId: string) => void;
 };
 
 export default function ListColumn({
@@ -20,11 +28,15 @@ export default function ListColumn({
   onAddCard,
   onEditCard,
   onDeleteCard,
+  onUpdateList,
+  onDeleteList,
 }: ListColumnProps) {
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
 
-  const handleSaveCard = (updatedCard) => {
-    onEditCard(list._id, selectedCard._id, updatedCard);
+  const handleSaveCard = (updatedCard: CardType) => {
+    if (selectedCard) {
+      onEditCard(list._id, selectedCard._id, updatedCard);
+    }
   };
 
   return (
@@ -69,7 +81,7 @@ export default function ListColumn({
         <CardModal
           card={selectedCard}
           onClose={() => setSelectedCard(null)}
-          onSave={(updatedCard) => handleSaveCard(updatedCard)}
+          onSave={(updatedCard: CardType) => handleSaveCard(updatedCard)}
           onDelete={() => {
             onDeleteCard(list._id, selectedCard._id);
             setSelectedCard(null);
@@ -79,4 +91,3 @@ export default function ListColumn({
     </div>
   );
 }
-
