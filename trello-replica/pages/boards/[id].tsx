@@ -70,7 +70,9 @@ export default function BoardPage() {
       });
       setBoard((prevBoard) => ({
         ...prevBoard!,
-        lists: [...prevBoard!.lists, response.data.data],
+        lists: prevBoard?.lists ?
+          [...prevBoard!.lists, response.data.data] :
+          [response.data.data],
       }));
       setNewListName("");
 
