@@ -238,7 +238,7 @@ export default function BoardPage() {
       <p className="text-gray-600 mb-8">{board.description}</p>
 
       <div className="flex space-x-4">
-        {board.lists && board.lists.map((list) => (
+        {board?.lists && board?.lists?.map((list) => (
           <ListColumn
             key={list._id}
             list={list}
