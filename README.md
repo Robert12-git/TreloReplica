@@ -211,3 +211,7 @@
 - Identify bottlenecks by analyzing time spent on boards or lists and optimizing slow-performing features.
 - Evaluate retention by monitoring repeat interactions with core features and identifying drop-offs.
 - Guide the roadmap based on feature popularity, improving the app in ways that matter most to users.
+
+![Activity in Posthog](image.png)
+
+![Web analytics in Posthog](image-1.png)
